@@ -1,0 +1,76 @@
+<h1>Card Form</h1>
+<form (ngSubmit)="handleSubmit(cardForm)" #cardForm="ngForm">
+    <div class="form-group">
+        <label for="fName">First Name:</label>
+        <input type="text" class="form-control" placeholder="Enter First Name"
+            [ngModel]="card?.firstName" name="firstName" required #fName="ngModel">
+        <div class="alert alert-danger" *ngIf="fName.touched && fName.errors?.required">
+            First name is a required field
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="lName">Last Name:</label>
+        <input type="text" class="form-control" placeholder="Enter Last Name"
+        [ngModel]="card?.lastName" name="lastName" required #lName="ngModel">
+        <div class="alert alert-danger" *ngIf="lName.touched && lName.errors?.required">
+            Last name is a required field
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="lName">Middle Name:</label>
+        <input type="text" class="form-control" placeholder="Enter Middle Name"
+        [ngModel]="card?.middleName" name="middleName" >
+    </div>
+        
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" placeholder="Enter Email"
+        [ngModel]="card?.email" name="email" email required #email="ngModel">
+        <div class="alert alert-danger" *ngIf="email.touched && email.errors?.required">
+            Email is a required field
+        </div>
+        <div class="alert alert-danger" *ngIf="email.touched && email.errors?.email">
+            Valid email address is required
+        </div>   
+    </div>
+    
+    <div class="form-group">
+        <label for="work">Work:</label>
+        <input type="text" class="form-control" 
+        [ngModel]="card?.work" name="work" placeholder="Format: 123-123-1234" 
+        required #work="ngModel" phoneNumberValidator>
+        <div class="alert alert-danger" *ngIf="work.touched && work.errors?.required">
+            Work phone number is a required field
+        </div>
+        <div class="alert alert-danger" *ngIf="work.touched && work.errors?.numberInvalid">
+            Invalid number format: sample format 123-123-1234
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="cell">Cell:</label>
+        <input type="text" class="form-control" [ngModel]="card?.cell" 
+        name="cell" placeholder="Format: 123-123-1234" required #cell="ngModel"
+        phoneNumberValidator>
+        <div class="alert alert-danger" *ngIf="cell.touched && cell.errors?.required">
+            Cell phone number is a  required field
+        </div>
+        <div class="alert alert-danger" *ngIf="cell.touched && cell.errors?.numberInvalid">
+            Invalid number format: sample format 123-123-1234
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="fax">Fax:</label>
+        <input type="text" class="form-control" [ngModel]="card?.fax" 
+            name="fax" placeholder="Format: 123-123-1234" #fax="ngModel"
+            phoneNumberValidator>
+        <div class="alert alert-danger" *ngIf="fax.touched && fax.errors?.numberInvalid">
+            Invalid number format: sample format 123-123-1234
+        </div>
+    
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="cardForm.invalid">Submit</button>
+</form>

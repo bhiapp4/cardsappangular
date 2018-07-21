@@ -1,0 +1,63 @@
+<h1> User Form</h1>
+<form [formGroup]="userForm" (ngSubmit)="handleSubmit()">
+  <div class="form-group">
+    <label for="firstName"><span class="redstar">*</span>First Name:</label>
+    <input type="text" class="form-control" formControlName="firstName">
+    <div class="alert alert-danger" *ngIf="userForm.controls.firstName.touched && userForm.controls.firstName.errors?.required">
+      First Name is a required field
+    </div>
+  </div>
+  <div class="form-group">
+      <label for="middleName">Middle Name:</label>
+      <input type="text" class="form-control" formControlName="middleName">
+  </div>
+  <div class="form-group">
+      <label for="lastName"><span class="redstar">*</span>Last Name:</label>
+      <input type="text" class="form-control" formControlName="lastName">
+      <div class="alert alert-danger" *ngIf="userForm.controls.lastName.touched && userForm.controls.lastName.errors?.required">
+        Last Name is a required field
+      </div>
+  </div>
+  <div class="form-group">
+      <label for="userName"><span class="redstar">*</span>User Name(email):</label>
+      <input type="text" class="form-control" formControlName="userName">
+      <div class="alert alert-danger" *ngIf="userForm.controls.userName.touched && userForm.controls.userName.errors?.required">
+        User Name is a required field
+      </div>
+      <div class="alert alert-danger" *ngIf="userForm.controls.userName.touched && userForm.controls.userName.errors?.email">
+        Email format is invalid
+      </div>
+  </div>
+  <div class="form-group">
+      <label for="password"><span class="redstar">*</span>Password:</label>
+      <input type="password" class="form-control" formControlName="password">
+      <div class="alert alert-danger" *ngIf="userForm.controls.password.touched && userForm.controls.password.errors?.required">
+        Password is a required field
+      </div>
+  </div>
+  <div class="form-group">
+    <select formControlName="roles" multiple>
+        <option *ngFor="let role of roles" [value]="role">{{ role.name }}</option>
+    </select>
+  </div>
+  <div formGroupName="address">
+      <div class="form-group">
+          <label for="city">City:</label>
+          <input type="text" class="form-control" formControlName="city">
+      </div>
+      <div class="form-group">
+          <label for="state">State:</label>
+          <input type="text" class="form-control" formControlName="state">
+      </div>
+      <div class="form-group">
+          <label for="country">Country:</label>
+          <input type="text" class="form-control" formControlName="country">
+      </div>
+      <div class="form-group">
+          <label for="zip">Zip:</label>
+          <input type="text" class="form-control" formControlName="zip">
+      </div> 
+  </div>
+  
+    <button class="btn btn-primary" type="submit" [disabled]="userForm.invalid">Submit</button>
+</form>

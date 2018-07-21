@@ -1,0 +1,35 @@
+<div class="panel panel-default" *ngFor="let card of cards">
+  <div class="panel-heading">
+        <a [routerLink]="['/cards/detail',card.id]">{{card.firstName + ' '+card.lastName}}</a>
+        <button class="btn btn-xs btn-primary edit" type="button" (click)="edit(card.id)">Edit</button>    
+  </div>
+  <div class="panel-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-8">
+                First Name: {{card.firstName}}<br/>
+                Last Name: {{card.lastName}}<br/>
+                Middle Name: {{card.middleName}}<br/>
+                Email: {{card.email}}<br/>
+                Cell: {{card.cell}}<br/>
+                Work: {{card.work}}<br/>
+                Fax: {{card.fax}}<br/>
+                <span *ngIf="card.upVoteCount >=50">
+                  Rating: HIGH 
+                </span>
+                <span *ngIf="card.upVoteCount <50 && card.upVoteCount >=25">
+                    Rating: MEDIUM 
+                </span>
+                <span *ngIf="card.upVoteCount <25">
+                      Rating: Low 
+                </span>
+               <!-- VoteCount : {{card.upVoteCount}}-->
+            </div>
+            <div class="col-xs-6 col-md-4">
+                <cardsapp-vote [upVoteCount]="card.upVoteCount" (upVoteCountChanged)="updateCardWithUpCount(card,$event)"></cardsapp-vote>
+            </div>    
+        
+        </div>
+    </div>
+  </div>
+</div>

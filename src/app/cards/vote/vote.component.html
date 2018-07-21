@@ -1,0 +1,12 @@
+
+  <!--
+  <i class="glyphicon glyphicon-menu-up" (click)="upVote()"></i><br/>
+  <span>{{upVoteCount}}</span><br/>
+  <i class="glyphicon glyphicon-menu-down" (click)="downVote()"></i>
+-->
+<i class="glyphicon glyphicon-menu-up" (click)="vote('Up')"></i><br/>
+  <span [ngClass]="{'green':upVoteCount >=50, 
+      'orange': (upVoteCount <50 && upVoteCount >=25),
+        'red': (upVoteCount <25)}">{{upVoteCount}}</span><br/>
+  <i class="glyphicon glyphicon-menu-down" (click)="vote('Down')"></i>
+

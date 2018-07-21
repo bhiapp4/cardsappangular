@@ -1,0 +1,31 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink="cards">Cards App</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right" *ngIf="!isUserLoggedIn()">
+          <li routerLinkActive="active" >
+            <a routerLink="users/login">Login</a>
+          </li>  
+          <li routerLinkActive="active">
+            <a routerLink="users/form">Signup</a>
+          </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" *ngIf="isUserLoggedIn()">
+          <li>
+            <a (click)="logout()">Logout</a>
+          </li>  
+      </ul>
+      <ul class="nav navbar-nav" *ngIf="isUserLoggedIn()">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <a routerLink="cards">Home</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="cards/form">Add Card</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="users/roleForm">Add Role</a>
+          </li>
+        </ul>
+    </div>
+  </nav>

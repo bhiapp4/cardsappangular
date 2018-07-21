@@ -1,0 +1,16 @@
+<h1> Role Form</h1>
+<form #roleForm="ngForm" (ngSubmit)="handleSubmit(roleForm)">
+  <div class="form-group">
+    <label for="name"><span class="redstar">*</span>Name:</label>
+    <input type="text" name="name" class="form-control" 
+      ngModel required #roleName="ngModel">
+    <div class="alert alert-danger" *ngIf="roleName.touched && roleName.errors?.required">
+      Role Name is a required field
+    </div>
+  </div>
+  <div class="form-group">
+      <label for="description">Description:</label>
+      <input type="text" name="description" class="form-control" ngModel>
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="roleForm.invalid">Submit</button>
+</form>

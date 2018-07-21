@@ -1,0 +1,26 @@
+<h1> Card Detail</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <label>First Name:</label> {{card.firstName}}<br/>
+    <label>Last Name:</label> {{card.lastName}}<br/>
+    <label>Middle Name:</label> {{card.middleName}}<br/>
+    <label>Up Vote Count:</label> {{card.upVoteCount}}<br/>  
+    <label>Email:</label> {{card.email}}<br/>
+    <label>Cell:</label> {{card.cell}}<br/>
+    <label>Work:</label> {{card.work}}<br/>
+    <label>Fax:</label> {{card.fax}}<br/>
+    <span *ngIf="card.upVoteCount >=50">
+      <label>Rating:</label> HIGH 
+    </span>
+    <span *ngIf="card.upVoteCount <50 && card.upVoteCount >=25">
+      <label>Rating:</label> MEDIUM 
+    </span>
+    <span *ngIf="card.upVoteCount <25">
+      <label>Rating:</label> Low 
+    </span><br/>
+    <label>Created By:</label> {{card.createdBy}}<br/>
+    <label>Created Date:</label> {{displayDate(card.createdDateTime)}}<br/>
+    <label>Updated By:</label> {{card.updatedBy}}<br/>
+    <label>Updated Date:</label> {{displayDate(card.updatedDateTime)}}
+  </div>
+</div>
